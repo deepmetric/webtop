@@ -1,6 +1,6 @@
 # Conservative overlay on your existing Webtop image.
 # Keeps the original ENTRYPOINT/CMD and s6 service supervision.
-FROM webtop:alpine-icewm
+FROM lscr.io/linuxserver/webtop:alpine-icewm
 
 USER root
 
