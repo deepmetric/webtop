@@ -1,0 +1,21 @@
+services:
+  webtop:
+    build:
+      context: .
+    image: webtop-optimised:local
+    container_name: webtop-optimised
+    ports:
+      - "3001:3001"
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: Asia/Kolkata
+      CUSTOM_USER: ${CUSTOM_USER:-browseruser}
+      PASSWORD: ${WEBTOP_PASSWORD:?Set WEBTOP_PASSWORD in your environment}
+    volumes:
+      - ./config:/config
+    # 64 MB is an experimental compromise, not a recommended Webtop default.
+    # Increase if Chromium/X11 crashes; remember it counts toward memory use.
+    shm_size: 64mb
+    mem_limit: 512m
+    restart: unless-stopped
